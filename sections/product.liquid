@@ -1,0 +1,84 @@
+{% comment %}
+  This section is used in the product template to render product page with
+  media, content, and add-to-cart form.
+
+  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
+{% endcomment %}
+
+<div class="product_cart-wrapper">
+  {% assign current_variant = product.variants.first %}
+  <div class="product-images">
+    {% for variant in product.variants %}
+      <div
+        class="variant-block"
+        {% if variant == current_variant %}
+          style="display:block"
+        {% else %}
+          style="display:none"
+        {% endif %}
+        data-variant-id="{{variant.id}}"
+      >
+        <h3>{{ variant.title }}</h3>
+
+        {% assign photos = variant.metafields.custom.colorPhoto.value %}
+
+        {% if photos != blank %}
+          <div
+            class="variant-images-block"
+            data-variant-id="{{ variant.id }}"
+          >
+            {% for file in photos %}
+              <img src="{{ file | image_url }}" alt="{{ variant.title }}">
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div>
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.price | money }}</p>
+      <p>{{ product.description }}</p>
+    </div>
+
+    <div class="product-form">
+      {% form 'product', product %}
+        {% assign current_variant = product.selected_or_first_available_variant %}
+
+        <div class="variant-buttons">
+          {% for variant in product.variants %}
+            <label class="variant-label {% if variant == current_variant %} active {% endif %}">
+              <input
+                type="radio"
+                name="id"
+                value="{{ variant.id }}"
+                {% if variant == current_variant %}
+                  checked
+                {% endif %}
+                data-variant-id="{{variant.id}}"
+              >
+              {{ variant.title }}
+            </label>
+          {% endfor %}
+        </div>
+
+        <input type="text" name="quantity" min="1" value="1">
+
+        <input type="submit" value="Add to cart">
+        {{ form | payment_button }}
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.product",
+  "settings": [],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
