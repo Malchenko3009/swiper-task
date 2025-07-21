@@ -1,0 +1,33 @@
+{% assign current_variant = product.variants.first %}
+<div class="product-images">
+  {% for variant in product.variants %}
+    <div
+      class="variant-block"
+      {% if variant == current_variant %}
+        style="display:block"
+      {% else %}
+        style="display:none"
+      {% endif %}
+      data-variant-id="{{variant.id}}"
+    >
+      {% assign photos = variant.metafields.custom.colorPhoto.value %}
+
+      {% if photos != blank %}
+        <div class="swiper variant-images-block" data-variant-id="{{ variant.id }}">
+          <div class="swiper-wrapper">
+            {% for file in photos %}
+              <div class="swiper-slide">
+                <img src="{{ file | image_url }}" alt="{{ variant.title }}" loading="lazy">
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- Додаємо елементи керування -->
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

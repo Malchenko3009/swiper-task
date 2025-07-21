@@ -1,0 +1,61 @@
+{% schema %}
+{
+  "name": "Product Slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Увімкнути слайдер",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Показувати стрілки навігації",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Показувати пагінацію",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_desktop",
+      "label": "Кількість слайдів на ПК",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_tablet",
+      "label": "Кількість слайдів на планшеті",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_mobile",
+      "label": "Кількість слайдів на мобільному",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "space_between_slides",
+      "label": "Відступ між слайдами (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    }
+  ]
+}
+{% endschema %}

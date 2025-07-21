@@ -1,43 +1,82 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const radios = document.querySelectorAll('input[name="id"]');
-  const variantBlocks = document.querySelectorAll('.variant-block');
+function initVariantSliders() {
+  document.querySelectorAll('.variant-images-block').forEach((sliderEl) => {
+    const slides = sliderEl.querySelectorAll('.swiper-slide');
+    const slidesCount = slides.length;
 
-  function showVariantBlock(selectedId) {
-    variantBlocks.forEach((block) => {
-      const blockId = block.dataset.variantId;
-      if (blockId === selectedId) {
-        block.style.display = 'block';
-      } else {
-        block.style.display = 'none';
-      }
-    });
-  }
+    const enableSlider = sliderEl.dataset.enableSlider === 'true';
+    const showNavigation = sliderEl.dataset.showNavigation === 'true';
+    const showPagination = sliderEl.dataset.showPagination === 'true';
+    const slidesPerViewDesktop = parseInt(sliderEl.dataset.slidesPerViewDesktop, 10) || 1;
+    const slidesPerViewTablet = parseInt(sliderEl.dataset.slidesPerViewTablet, 10) || 1;
+    const slidesPerViewMobile = parseInt(sliderEl.dataset.slidesPerViewMobile, 10) || 1;
+    const spaceBetween = parseInt(sliderEl.dataset.spaceBetween, 10) || 10;
+    const enableAutoplay = sliderEl.dataset.enableAutoplay === 'true';
+    const autoplayDelay = parseInt(sliderEl.dataset.autoplayDelay, 10) || 3000;
 
-  function activeLabel(selectRadio) {
-    radios.forEach((radio) => {
-      if (radio === selectRadio) {
-        radio.parentElement.classList.add('active');
-      } else {
-        radio.parentElement.classList.remove('active');
-      }
-    });
-  }
+    // Вивід логів для мобільних налаштувань
+    console.log('--- Slider Mobile Settings ---');
+    console.log('variant-id:', sliderEl.dataset.variantId);
+    console.log('enableSlider:', enableSlider);
+    console.log('slidesCount:', slidesCount);
+    console.log('slidesPerViewMobile:', slidesPerViewMobile);
+    console.log('slidesPerViewTablet:', slidesPerViewTablet);
+    console.log('slidesPerViewDesktop:', slidesPerViewDesktop);
+    console.log('spaceBetween:', spaceBetween);
+    console.log('enableAutoplay:', enableAutoplay);
+    console.log('autoplayDelay:', autoplayDelay);
 
-  const checkedRadio = Array.from(radios).find((r) => r.checked);
-  if (checkedRadio) {
-    showVariantBlock(checkedRadio.dataset.variantId);
-    activeLabel(checkedRadio);
-  } else if (radios.length > 0) {
-    const firstRadio = radios[0];
-    firstRadio.checked = true;
-    showVariantBlock(firstRadio.dataset.variantId);
-    activeLabel(firstRadio);
-  }
+    const arrows = sliderEl.querySelectorAll('.swiper-button-next, .swiper-button-prev');
 
-  radios.forEach((radio) => {
-    radio.addEventListener('change', function () {
-      showVariantBlock(radio.dataset.variantId);
-      activeLabel(radio);
+    const maxSlides = Math.max(slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile);
+    if (!enableSlider || slidesCount <= 1) {
+      sliderEl.classList.remove('swiper');
+      sliderEl.querySelector('.swiper-wrapper')?.classList.remove('swiper-wrapper');
+      slides.forEach((slide) => slide.classList.remove('swiper-slide'));
+      return;
+    }
+    if (showNavigation) {
+      arrows.forEach((arrow) => (arrow.style.display = 'flex'));
+    }
+    sliderEl.classList.add('swiper');
+    sliderEl.querySelector('.swiper-wrapper')?.classList.add('swiper-wrapper');
+    slides.forEach((slide) => slide.classList.add('swiper-slide'));
+
+    new Swiper(sliderEl, {
+      loop: slidesCount > maxSlides,
+      slidesPerView: slidesPerViewDesktop,
+      spaceBetween: spaceBetween,
+      autoplay: enableAutoplay
+        ? {
+            delay: autoplayDelay,
+            disableOnInteraction: false,
+          }
+        : false,
+      pagination: showPagination
+        ? {
+            el: sliderEl.querySelector('.swiper-pagination'),
+            clickable: true,
+          }
+        : false,
+      navigation: showNavigation
+        ? {
+            nextEl: sliderEl.querySelector('.swiper-button-next'),
+            prevEl: sliderEl.querySelector('.swiper-button-prev'),
+          }
+        : false,
+      breakpoints: {
+        580: {
+          slidesPerView: slidesPerViewMobile,
+        },
+        768: {
+          slidesPerView: slidesPerViewTablet,
+        },
+        1024: {
+          slidesPerView: slidesPerViewDesktop,
+        },
+      },
     });
   });
-});
+}
+
+document.addEventListener('DOMContentLoaded', initVariantSliders);
+document.addEventListener('shopify:section:load', initVariantSliders);
