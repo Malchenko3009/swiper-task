@@ -13,18 +13,6 @@ function initVariantSliders() {
     const enableAutoplay = sliderEl.dataset.enableAutoplay === 'true';
     const autoplayDelay = parseInt(sliderEl.dataset.autoplayDelay, 10) || 3000;
 
-    // Вивід логів для мобільних налаштувань
-    console.log('--- Slider Mobile Settings ---');
-    console.log('variant-id:', sliderEl.dataset.variantId);
-    console.log('enableSlider:', enableSlider);
-    console.log('slidesCount:', slidesCount);
-    console.log('slidesPerViewMobile:', slidesPerViewMobile);
-    console.log('slidesPerViewTablet:', slidesPerViewTablet);
-    console.log('slidesPerViewDesktop:', slidesPerViewDesktop);
-    console.log('spaceBetween:', spaceBetween);
-    console.log('enableAutoplay:', enableAutoplay);
-    console.log('autoplayDelay:', autoplayDelay);
-
     const arrows = sliderEl.querySelectorAll('.swiper-button-next, .swiper-button-prev');
 
     const maxSlides = Math.max(slidesPerViewDesktop, slidesPerViewTablet, slidesPerViewMobile);
