@@ -52,7 +52,7 @@ function initVariantSliders() {
           }
         : false,
       breakpoints: {
-        580: {
+        320: {
           slidesPerView: slidesPerViewMobile,
         },
         768: {
