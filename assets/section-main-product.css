@@ -1632,3 +1632,35 @@ a.product__text {
 .swiper-button-next {
   right: 10px;
 }
+
+.product-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.accordion-item {
+  border-bottom: 1px solid gray;
+}
+.accordion-title {
+  width: 100%;
+  padding-bottom: 10px;
+  font-size: 18px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 1rem;
+}
+
+.product-image img {
+  max-width: 100%;
+}

@@ -93,42 +93,53 @@
               {% if photos != blank %}
                 {% for block in section.blocks %}
                   {% if block.type == 'product_slider' %}
-                    <div
-                      class="swiper variant-images-block"
-                      id="variant-swiper-{{ variant.id }}"
-                      data-variant-id="{{ variant.id }}"
-                      data-enable-slider="{{ block.settings.enable_slider }}"
-                      data-show-navigation="{{ block.settings.show_navigation }}"
-                      data-show-pagination="{{ block.settings.show_pagination }}"
-                      data-slides-per-view-desktop="{{ block.settings.slides_per_view_desktop }}"
-                      data-slides-per-view-tablet="{{ block.settings.slides_per_view_tablet }}"
-                      data-slides-per-view-mobile="{{ block.settings.slides_per_view_mobile }}"
-                      data-space-between="{{ block.settings.space_between_slides }}"
-                      data-enable-autoplay="{{ block.settings.enable_autoplay }}"
-                      data-autoplay-delay="{{ block.settings.autoplay_delay }}"
-                    >
-                      <div class="swiper-wrapper">
+                    {% if block.settings.enable_slider %}
+                      <div
+                        class="swiper variant-images-block"
+                        id="variant-swiper-{{ variant.id }}"
+                        data-variant-id="{{ variant.id }}"
+                        data-enable-slider="{{ block.settings.enable_slider }}"
+                        data-show-navigation="{{ block.settings.show_navigation }}"
+                        data-show-pagination="{{ block.settings.show_pagination }}"
+                        data-slides-per-view-desktop="{{ block.settings.slides_per_view_desktop }}"
+                        data-slides-per-view-tablet="{{ block.settings.slides_per_view_tablet }}"
+                        data-slides-per-view-mobile="{{ block.settings.slides_per_view_mobile }}"
+                        data-space-between="{{ block.settings.space_between_slides }}"
+                        data-enable-autoplay="{{ block.settings.enable_autoplay }}"
+                        data-autoplay-delay="{{ block.settings.autoplay_delay }}"
+                      >
+                        <div class="swiper-wrapper">
+                          {% for file in photos %}
+                            <div class="swiper-slide">
+                              <img src="{{ file | image_url }}" alt="{{ variant.title }}" loading="lazy">
+                            </div>
+                          {% endfor %}
+                        </div>
+
+                        <div class="swiper-pagination"></div>
+
+                        {% if block.settings.show_navigation %}
+                          <div class="swiper-button-prev" style="display: none;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </div>
+                          <div class="swiper-button-next" style="display: none;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% else %}
+                      <div class="product-images">
                         {% for file in photos %}
                           <div class="swiper-slide">
                             <img src="{{ file | image_url }}" alt="{{ variant.title }}" loading="lazy">
                           </div>
                         {% endfor %}
                       </div>
-
-                      <div class="swiper-pagination"></div>
-                      {% if block.settings.show_navigation %}
-                        <div class="swiper-button-prev" style="display: none;">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                        </div>
-                        <div class="swiper-button-next" style="display: none;">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                        </div>
-                      {% endif %}
-                    </div>
+                    {% endif %}
                   {% endif %}
                 {% endfor %}
               {% endif %}
@@ -254,6 +265,30 @@
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
                   </div>
+                  {% if product.metafields.custom.accordion_items != blank %}
+                    {% assign allow_multiple = product.metafields.custom.accordion_allow_multiple.value %}
+                    <div class="product-accordion" data-allow-multiple="{{ allow_multiple }}">
+                      {% for item in product.metafields.custom.accordion_items.value %}
+                        {% if item.subtitle.value != blank %}
+                          <div class="accordion-item">
+                            <button class="accordion-title">
+                              {{ item.title.value }}
+                              <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </button>
+                            <div class="accordion-content">{{ item.subtitle.value }}</div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
                 {%- endif -%}
               {%- when 'sku' -%}
                 <p
