@@ -99,14 +99,20 @@
                         id="variant-swiper-{{ variant.id }}"
                         data-variant-id="{{ variant.id }}"
                         data-enable-slider="{{ block.settings.enable_slider }}"
-                        data-show-navigation="{{ block.settings.show_navigation }}"
-                        data-show-pagination="{{ block.settings.show_pagination }}"
                         data-slides-per-view-desktop="{{ block.settings.slides_per_view_desktop }}"
                         data-slides-per-view-tablet="{{ block.settings.slides_per_view_tablet }}"
                         data-slides-per-view-mobile="{{ block.settings.slides_per_view_mobile }}"
-                        data-space-between="{{ block.settings.space_between_slides }}"
                         data-enable-autoplay="{{ block.settings.enable_autoplay }}"
                         data-autoplay-delay="{{ block.settings.autoplay_delay }}"
+                        data-show-navigation-mobile="{{ block.settings.show_navigation_mobile }}"
+                        data-show-navigation-tablet="{{ block.settings.show_navigation_tablet }}"
+                        data-show-navigation-desktop="{{ block.settings.show_navigation_desktop }}"
+                        data-show-pagination-mobile="{{ block.settings.show_pagination_mobile }}"
+                        data-show-pagination-tablet="{{ block.settings.show_pagination_tablet }}"
+                        data-show-pagination-desktop="{{ block.settings.show_pagination_desktop }}"
+                        data-space-between-mobile="{{ block.settings.space_between_mobile }}"
+                        data-space-between-tablet="{{ block.settings.space_between_tablet }}"
+                        data-space-between-desktop="{{ block.settings.space_between_desktop }}"
                       >
                         <div class="swiper-wrapper">
                           {% for file in photos %}
@@ -118,7 +124,6 @@
 
                         <div class="swiper-pagination"></div>
 
-                        {% if block.settings.show_navigation %}
                           <div class="swiper-button-prev" style="display: none;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                               <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -129,7 +134,7 @@
                               <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                           </div>
-                        {% endif %}
+
                       </div>
                     {% else %}
                       <div class="product-images">
@@ -2170,66 +2175,128 @@
       ]
     },
 
+{
+  "type": "product_slider",
+  "name": "Product Slider",
+  "settings": [
     {
-      "type": "product_slider",
-      "name": "Product Slider",
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "enable_slider",
-          "label": "Увімкнути слайдер",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "show_navigation",
-          "label": "Показувати стрілки навігації",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "show_pagination",
-          "label": "Показувати пагінацію",
-          "default": true
-        },
-        {
-          "type": "range",
-          "id": "slides_per_view_desktop",
-          "label": "Кількість слайдів на ПК",
-          "min": 1,
-          "max": 6,
-          "step": 1,
-          "default": 4
-        },
-        {
-          "type": "range",
-          "id": "slides_per_view_tablet",
-          "label": "Кількість слайдів на планшеті",
-          "min": 1,
-          "max": 6,
-          "step": 1,
-          "default": 2
-        },
-        {
-          "type": "range",
-          "id": "slides_per_view_mobile",
-          "label": "Кількість слайдів на мобільному",
-          "min": 1,
-          "max": 6,
-          "step": 1,
-          "default": 1
-        },
-        {
-          "type": "range",
-          "id": "space_between_slides",
-          "label": "Відступ між слайдами (px)",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "default": 10
-        }
-      ]
+      "type": "header",
+      "content": "Загальні налаштування"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Увімкнути слайдер",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Налаштування для ПК"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation_desktop",
+      "label": "Показувати стрілки на ПК",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_desktop",
+      "label": "Показувати пагінацію на ПК",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_desktop",
+      "label": "Кількість слайдів на ПК",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "space_between_desktop",
+      "label": "Відступ між слайдами (px) на ПК",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Налаштування для планшету"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation_tablet",
+      "label": "Показувати стрілки на планшеті",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_tablet",
+      "label": "Показувати пагінацію на планшеті",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_tablet",
+      "label": "Кількість слайдів на планшеті",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "space_between_tablet",
+      "label": "Відступ між слайдами (px) на планшеті",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Налаштування для мобільного"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation_mobile",
+      "label": "Показувати стрілки на мобільному",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_mobile",
+      "label": "Показувати пагінацію на мобільному",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_mobile",
+      "label": "Кількість слайдів на мобільному",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "space_between_mobile",
+      "label": "Відступ між слайдами (px) на мобільному",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10
     }
+  ]
+}
+
   ],
   "settings": [
     {
