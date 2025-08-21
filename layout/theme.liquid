@@ -297,10 +297,12 @@
       }
     </script>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-    >
+    {%- if template == 'product' -%}
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+      >
+    {%- endif -%}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -377,8 +379,11 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    <script src="{{ 'script.js' | asset_url  }}"></script>
-    <script src="{{ 'swiper-init.js' | asset_url  }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    {%- if template == 'product' -%}
+      <script src="{{ 'script.js' | asset_url  }} " defer="defer"></script>
+      {% comment %} <script src="{{ 'swiper-init.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
+    {%- endif -%}
   </body>
 </html>
