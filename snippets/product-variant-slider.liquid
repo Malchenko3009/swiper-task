@@ -7,7 +7,7 @@
     <div class="swiper-wrapper">
       {% for file in photos %}
         <div class="swiper-slide">
-          <img src="{{ file | image_url }}" alt="{{ variant.title }}" loading="lazy">
+          {{ file | image_url: width: 400 | image_tag: alt: variant.title  }}
         </div>
       {% endfor %}
     </div>

@@ -20,11 +20,11 @@
             "show_pagination_desktop": true,
             "show_navigation_desktop": true,
             "space_between_desktop": 10,
-            "slides_per_view_tablet": 1,
+            "slides_per_view_tablet": 2,
             "show_pagination_tablet": false,
             "show_navigation_tablet": true,
             "space_between_tablet": 20,
-            "slides_per_view_mobile": 2,
+            "slides_per_view_mobile": 3,
             "show_pagination_mobile": true,
             "show_navigation_mobile": false,
             "space_between_mobile": 10
