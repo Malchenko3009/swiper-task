@@ -7,7 +7,7 @@
     <div class="swiper-wrapper">
       {% for file in photos %}
         <div class="swiper-slide">
-          {{ file | image_url: width: 400 | image_tag: alt: variant.title  }}
+          {{ file | image_url: width: 400 | image_tag: alt: variant.title }}
         </div>
       {% endfor %}
     </div>
@@ -36,38 +36,39 @@
 {% endif %}
 
 <script>
+  {%  assign slider = block.settings %}
   document.addEventListener('DOMContentLoaded',function() {
   const swiper = new Swiper('.swiper', {
-    slidesPerView: {{ block.settings.slides_per_view_mobile }},
-    spaceBetween: {{ block.settings.space_between_mobile }},
+    slidesPerView: {{ slider.slides_per_view_mobile }},
+    spaceBetween: {{ slider.space_between_mobile }},
     autoHeight:true,
     observer: true,
     observeParents: true,
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
-      enabled:{{ block.settings.show_pagination_mobile }},
+      enabled: {{ slider.show_pagination_mobile }},
     },
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
-      enabled: {{ block.settings.show_navigation_mobile }},
+      enabled: {{ slider.show_navigation_mobile }},
     },
     breakpoints: {
       768: {
-        slidesPerView: {{ block.settings.slides_per_view_tablet }} ,
-        spaceBetween: {{ block.settings.space_between_tablet }},
-        pagination:{ enabled:{{ block.settings.show_pagination_tablet }} },
+        slidesPerView: {{ slider.slides_per_view_tablet }} ,
+        spaceBetween: {{ slider.space_between_tablet }},
+        pagination:{ enabled:{{ slider.show_pagination_tablet }} },
         navigation: {
-          enabled: {{ block.settings.show_navigation_tablet }},
+          enabled: {{ slider.show_navigation_tablet }},
         },
       },
       1024: {
-        slidesPerView: {{ block.settings.slides_per_view_desktop }},
-        spaceBetween: {{ block.settings.space_between_desktop }},
-        pagination:{ enabled:{{ block.settings.show_pagination_desktop }} },
+        slidesPerView: {{ slider.slides_per_view_desktop }},
+        spaceBetween: {{ slider.space_between_desktop }},
+        pagination:{ enabled: {{ slider.show_pagination_desktop }} },
         navigation: {
-          enabled: {{ block.settings.show_navigation_desktop }},
+          enabled: {{ slider.show_navigation_desktop }},
         },
       },
     },
