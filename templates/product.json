@@ -9,6 +9,44 @@
  */
 {
   "sections": {
+    "ivent_product_FqjNEL": {
+      "type": "ivent-product",
+      "blocks": {
+        "title_Xn6a97": {
+          "type": "title",
+          "settings": {}
+        },
+        "description_KmAtet": {
+          "type": "description",
+          "settings": {}
+        },
+        "price_L4WBmH": {
+          "type": "price",
+          "settings": {}
+        },
+        "variants_a6M3F6": {
+          "type": "variants",
+          "settings": {}
+        },
+        "buttons_Yza6Un": {
+          "type": "buttons",
+          "settings": {
+            "enable_dynamic_checkout": true
+          }
+        }
+      },
+      "block_order": [
+        "title_Xn6a97",
+        "description_KmAtet",
+        "price_L4WBmH",
+        "variants_a6M3F6",
+        "buttons_Yza6Un"
+      ],
+      "name": "Ivent Product",
+      "settings": {
+        "block_spacing": 20
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -121,6 +159,7 @@
     }
   },
   "order": [
+    "ivent_product_FqjNEL",
     "main",
     "related-products"
   ]

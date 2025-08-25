@@ -1,0 +1,81 @@
+h1,
+p {
+  margin: 0;
+}
+
+input:focus {
+  border: none;
+}
+select {
+  border: none;
+}
+
+.spacing {
+  margin-bottom: var(--block-spacing);
+}
+
+.product-ivent-info .spacing:last-child {
+  margin-bottom: 0;
+}
+.product-ivent-variants {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.product-ivent-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: start;
+}
+.product-ivent-block-img {
+  flex: 1;
+  margin: 0 auto;
+}
+.product-ivent-block-img img {
+  max-width: 100%;
+  object-fit: cover;
+}
+.product-ivent-info {
+  position: sticky;
+  top: 100px;
+  flex: 1;
+}
+.buttons_buy_product {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.product-ivent-buy-cart {
+  background: transparent;
+  border: 1px solid black;
+  color: black;
+}
+.button {
+  display: block;
+  width: 100%;
+}
+
+.product-ivent-customer-data {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.product-ivent-customer-data label input {
+  display: block;
+  width: 100%;
+  height: 30px;
+}
+.product-ivent-customer-data label {
+  position: relative;
+}
+.product-ivent-customer-data label p {
+  left: 15px;
+}
+
+@media (max-width: 900px) {
+  .product-ivent-block {
+    flex-direction: column;
+  }
+}
