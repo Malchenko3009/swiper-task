@@ -28,6 +28,18 @@
           "type": "variants",
           "settings": {}
         },
+        "addtional_data_xVUTJQ": {
+          "type": "addtional_data",
+          "settings": {
+            "show_name": true,
+            "show_surname": true,
+            "show_email": true,
+            "show_postal": true,
+            "show_birth": true,
+            "show_gender": true,
+            "show_usercode": true
+          }
+        },
         "buttons_Yza6Un": {
           "type": "buttons",
           "settings": {
@@ -40,6 +52,7 @@
         "description_KmAtet",
         "price_L4WBmH",
         "variants_a6M3F6",
+        "addtional_data_xVUTJQ",
         "buttons_Yza6Un"
       ],
       "name": "Ivent Product",
