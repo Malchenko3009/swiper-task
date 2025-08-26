@@ -23,8 +23,8 @@
                     <option value="{{ variant.id }}">{{ variant.title }}</option>
                   {% endfor %}
                 </select>
-                <select id="product-ivent-date"></select>
-                <select id="product-ivent-time"></select>
+                <select id="product-ivent-date" name="properties[Date]" form="{{ product_form_id }}"></select>
+                <select id="product-ivent-time" name="properties[Time]" required form="{{ product_form_id }}"></select>
               </div>
             {%- when 'addtional_data' -%}
               <div class="spacing addtional_data_block">

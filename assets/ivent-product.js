@@ -29,14 +29,13 @@
 // });
 
 const variantMetafields = JSON.parse(document.getElementById('variant-metafields').textContent);
-
 const variantSelect = document.getElementById('product-ivent-select');
 const dateSelect = document.getElementById('product-ivent-date');
 const timeSelect = document.getElementById('product-ivent-time');
 
 function createOption(value, text) {
   const option = document.createElement('option');
-  option.value = value;
+  option.value = text;
   option.textContent = text;
   return option;
 }
