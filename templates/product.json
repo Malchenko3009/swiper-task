@@ -9,58 +9,6 @@
  */
 {
   "sections": {
-    "ivent_product_FqjNEL": {
-      "type": "ivent-product",
-      "blocks": {
-        "title_Xn6a97": {
-          "type": "title",
-          "settings": {}
-        },
-        "description_KmAtet": {
-          "type": "description",
-          "settings": {}
-        },
-        "price_L4WBmH": {
-          "type": "price",
-          "settings": {}
-        },
-        "variants_a6M3F6": {
-          "type": "variants",
-          "settings": {}
-        },
-        "addtional_data_xVUTJQ": {
-          "type": "addtional_data",
-          "settings": {
-            "show_name": true,
-            "show_surname": true,
-            "show_email": true,
-            "show_postal": true,
-            "show_birth": true,
-            "show_gender": true,
-            "show_usercode": true
-          }
-        },
-        "buttons_Yza6Un": {
-          "type": "buttons",
-          "settings": {
-            "enable_dynamic_checkout": true
-          }
-        }
-      },
-      "block_order": [
-        "title_Xn6a97",
-        "description_KmAtet",
-        "price_L4WBmH",
-        "variants_a6M3F6",
-        "addtional_data_xVUTJQ",
-        "buttons_Yza6Un"
-      ],
-      "disabled": true,
-      "name": "Ivent Product",
-      "settings": {
-        "block_spacing": 20
-      }
-    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -68,17 +16,17 @@
           "type": "product_slider",
           "settings": {
             "enable_slider": true,
-            "slides_per_view_desktop": 1,
-            "show_pagination_desktop": true,
             "show_navigation_desktop": true,
+            "show_pagination_desktop": true,
+            "slides_per_view_desktop": 2,
             "space_between_desktop": 10,
-            "slides_per_view_tablet": 2,
-            "show_pagination_tablet": false,
             "show_navigation_tablet": true,
-            "space_between_tablet": 20,
-            "slides_per_view_mobile": 3,
-            "show_pagination_mobile": true,
+            "show_pagination_tablet": true,
+            "slides_per_view_tablet": 1,
+            "space_between_tablet": 30,
             "show_navigation_mobile": false,
+            "show_pagination_mobile": true,
+            "slides_per_view_mobile": 2,
             "space_between_mobile": 10
           }
         },
@@ -173,7 +121,6 @@
     }
   },
   "order": [
-    "ivent_product_FqjNEL",
     "main",
     "related-products"
   ]
