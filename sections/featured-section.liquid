@@ -10,6 +10,19 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  /* block padding */
+  .featured-block--{{ block.id }} {
+    padding-top: {{ block.settings.padding_top_mobile }}px;
+    padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .featured-block--{{ block.id }} {
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+    }
+  }
+  /* ./ block padding */
 {%- endstyle -%}
 
 {%- stylesheet -%}
@@ -91,7 +104,10 @@
 <div class="section--{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
     {% for block in section.blocks %}
-      <div class="featured-block-content" {{ block.shopify_attributes }}style="gap: {{ block.settings.gap }}px;">
+      <div
+        class="featured-block-content featured-block--{{ block.id }}"
+        {{ block.shopify_attributes }}style="gap: {{ block.settings.gap }}px;"
+      >
         <div class="featured-block-content-info">
           <div class="featured-block-content-info-heading">{{ block.settings.heading }}</div>
           <div class="featured-block-content-info-text">{{ block.settings.text }}</div>
@@ -266,6 +282,54 @@
           "label": "Image border radius",
           "min": 0,
           "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Block padding"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding top ",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Mobile"
+        },
+        {
+          "type": "range",
+          "id": "padding_top_mobile",
+          "label": "Padding top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom_mobile",
+          "label": "Padding bottom",
+          "min": 0,
+          "max": 100,
           "step": 1,
           "unit": "px",
           "default": 0
