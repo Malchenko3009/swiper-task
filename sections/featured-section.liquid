@@ -73,10 +73,19 @@
       font-size: 42px;
     }
   }
+  .featured-block-content-info-text {
+    @media (min-width: 750px) {
+      max-width: 435px;
+    }
+  }
   .featured-block-content-info-text > * {
+    font-size: 26px;
     line-height: 120%;
     letter-spacing: -0.01em;
     font-weight: 500;
+    @media (max-width: 750px) {
+      font-size: 20px;
+    }
   }
   .featured-block-content-info-icon {
     margin-top: 30px;
@@ -105,6 +114,7 @@
     align-items: center;
     gap: 11px;
     @media (max-width: 750px) {
+      margin-top: 24px;
       gap: 14px;
     }
   }
