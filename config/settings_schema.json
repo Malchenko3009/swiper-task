@@ -143,6 +143,12 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "metaobject",
+        "id": "type_body_font_custom",
+        "label": "Custom body font",
+        "metaobject_type": "font"
       }
     ]
   },
