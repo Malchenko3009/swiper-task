@@ -50,10 +50,22 @@
     },
     "featured_section_wM8wtz": {
       "type": "featured-section",
+      "blocks": {
+        "featured_cDteF7": {
+          "type": "featured",
+          "settings": {
+            "heading": "<h2>Quality guarantee</h2>",
+            "text": "<h2>Two of our core brand values are quality & trust, which is why everything we do is built on a foundation of excellence & transparency. Our products are -</h2>",
+            "image": "shopify://shop_images/image_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "featured_cDteF7"
+      ],
       "name": "Featured section",
       "settings": {
-        "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/image_1.png"
+        "color_scheme": "scheme-1"
       }
     },
     "featured_collection": {
