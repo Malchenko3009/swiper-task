@@ -9,6 +9,11 @@
     padding-top: {{ block.settings.padding_top_mobile }}px;
     padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
   }
+  {% if block.settings.custom_css != blank %}
+  .featured-block-{{ block.id }} {
+    {{ block.settings.custom_css }}
+  }
+      {% endif %}
     {% endif %}
   {% endfor %}
   @media screen and (min-width: 750px) {
@@ -426,6 +431,15 @@
           "step": 1,
           "unit": "px",
           "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Custom CSS"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_css",
+          "label": "Custom CSS"
         }
       ]
     },
