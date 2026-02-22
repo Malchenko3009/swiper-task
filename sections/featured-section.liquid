@@ -11,14 +11,22 @@
     }
   }
 {%- endstyle -%}
+
 {%- stylesheet -%}
   h2,
   p {
     margin: 0;
   }
+  img {
+    display: block;
+    width: 100%;
+  }
   .featured-block-content {
     display: flex;
     justify-content: space-between;
+    @media (max-width: 750px) {
+      flex-direction: column;
+    }
   }
   .featured-block-content-info-heading > * {
     margin-bottom: 32px;
@@ -28,6 +36,11 @@
     line-height: 100%;
     letter-spacing: -0.03em;
     color: #43384f;
+    text-transform: capitalize;
+    @media (max-width: 750px) {
+      margin-bottom: 14px;
+      font-size: 42px;
+    }
   }
   .featured-block-content-info-text > * {
     line-height: 120%;
@@ -37,8 +50,28 @@
   .featured-block-content-info-icon {
     margin-top: 30px;
     margin-bottom: 35px;
+    @media (max-width: 750px) {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+  }
+  .featured-block-content-info-icon svg {
+    @media (max-width: 750px) {
+      max-width: 100%;
+    }
+  }
+  .featured-block-content-image {
+    @media (max-width: 750px) {
+      margin-top: 24px;
+    }
+  }
+  .featured-block-content-image img {
+    @media (max-width: 450px) {
+      /* max-height: 360px; */
+    }
   }
   .featured-block-content-info-link {
+    max-width: 100%;
     width: 353px;
     height: 66px;
 
@@ -48,6 +81,10 @@
     line-height: 100% !important;
     letter-spacing: -0.03em !important;
     overflow: hidden;
+    @media (max-width: 750px) {
+      width: 335px;
+      height: 62px;
+    }
   }
 {%- endstylesheet -%}
 <div class="gradient"></div>
@@ -82,6 +119,40 @@
     {% endfor %}
   </div>
 </div>
+
+<script>
+  (function () {
+    var BREAKPOINT = 750;
+
+    function moveFeaturedImages() {
+      var blocks = document.querySelectorAll('.featured-block-content');
+      var isMobile = window.innerWidth < BREAKPOINT;
+
+      blocks.forEach(function (block) {
+        var imageWrap = block.querySelector('.featured-block-content-image');
+        var textBlock = block.querySelector('.featured-block-content-info-text');
+        if (!imageWrap || !textBlock) return;
+
+        if (isMobile) {
+          textBlock.appendChild(imageWrap);
+        } else {
+          block.appendChild(imageWrap);
+        }
+      });
+    }
+
+    function onResize() {
+      moveFeaturedImages();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', moveFeaturedImages);
+    } else {
+      moveFeaturedImages();
+    }
+    window.addEventListener('resize', onResize);
+  })();
+</script>
 {% schema %}
 {
   "name": "Featured sectio",
