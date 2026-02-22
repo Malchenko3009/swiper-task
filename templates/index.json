@@ -45,7 +45,7 @@
             "padding_bottom": 0,
             "padding_top_mobile": 42,
             "padding_bottom_mobile": 0,
-            "custom_css": ".featured-block-content-info {\n    max-width: 40%;\n}"
+            "custom_css": ".featured-block-content-info {\n    max-width: 44%;\n}"
           }
         },
         "benefit_BEMgzH": {
