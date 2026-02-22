@@ -38,9 +38,9 @@
             "button_link": "",
             "gap": 41,
             "image_radius": 20,
-            "padding_top": 200,
+            "padding_top": 100,
             "padding_bottom": 0,
-            "padding_top_mobile": 0,
+            "padding_top_mobile": 42,
             "padding_bottom_mobile": 0
           }
         }
