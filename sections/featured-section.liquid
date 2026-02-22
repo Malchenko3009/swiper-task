@@ -103,21 +103,34 @@
     margin-bottom: 1.5rem;
   }
   .featured-block-benefit-item {
+    border-radius: 10px;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 21px;
+    padding: 18px 28px 18px 26px;
+    background: #c3eaa7;
+    @media (max-width: 750px) {
+      padding: 22px 20px 23px 20px;
+    }
   }
   .featured-block-benefit-icon {
     display: inline-flex;
     flex-shrink: 0;
   }
   .featured-block-benefit-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    @media (max-width: 750px) {
+      width: 44px;
+      height: 44px;
+    }
   }
   .featured-block-benefit-text {
-    font-size: 1.4rem;
-    line-height: 1.4;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    @media (max-width: 750px) {
+      font-size: 18px;
+    }
   }
   .featured-block-benefit-text p {
     margin: 0;
@@ -147,9 +160,12 @@
       {% if block.type == 'featured' %}
         {% if last_featured != null %}
           {%- if last_featured.settings.button_link != blank -%}
-            <a class="button featured-block-content-info-link" href="{{ last_featured.settings.button_link }}">shop bestsellers</a>
+            <a class="button featured-block-content-info-link" href="{{ last_featured.settings.button_link }}"
+              >shop bestsellers</a
+            >
           {%- endif -%}
-          </div></div>
+          </div>
+          </div>
           {%- if last_featured.settings.image != blank -%}
             <div class="featured-block-content-image">
               <img
@@ -177,19 +193,22 @@
             {% endif %}
             <div class="featured-block-benefits">
       {% elsif block.type == 'benefit' %}
-              <div class="featured-block-benefit-item" {{ block.shopify_attributes }}>
-                {% if block.settings.icon != blank %}
-                  <span class="featured-block-benefit-icon">{{ block.settings.icon | raw }}</span>
-                {% endif %}
-                <span class="featured-block-benefit-text rte">{{ block.settings.text }}</span>
-              </div>
+        <div class="featured-block-benefit-item" {{ block.shopify_attributes }}>
+          {% if block.settings.icon != blank %}
+            <span class="featured-block-benefit-icon">{{ block.settings.icon | raw }}</span>
+          {% endif %}
+          <span class="featured-block-benefit-text rte">{{ block.settings.text }}</span>
+        </div>
       {% endif %}
     {% endfor %}
     {% if last_featured != null %}
       {%- if last_featured.settings.button_link != blank -%}
-        <a class="button featured-block-content-info-link" href="{{ last_featured.settings.button_link }}">shop bestsellers</a>
+        <a class="button featured-block-content-info-link" href="{{ last_featured.settings.button_link }}"
+          >shop bestsellers</a
+        >
       {%- endif -%}
-      </div></div>
+      </div>
+      </div>
       {%- if last_featured.settings.image != blank -%}
         <div class="featured-block-content-image">
           <img
