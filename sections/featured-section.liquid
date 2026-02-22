@@ -4,32 +4,37 @@
     justify-content: space-between;
   }
 {%- endstylesheet -%}
-<div class="section--{{ section.id }} page-width color-{{ section.settings.color_scheme }} gradient">
-  {% for block in section.blocks %}
-    <div class="featured-block-content" {{ block.shopify_attributes }}style="gap: {{ block.settings.gap }}px;">
-      <div class="featured-block-content-info">
-        <div class="featured-block-content-info-heading">{{ block.settings.heading }}</div>
-        <div class="featured-block-content-info-text">{{ block.settings.text }}</div>
-        {% if block.settings.icon != blank %}
-          <div class="featured-block-content-info-icon">
-            {{ block.settings.icon | raw }}
+<div class="gradient"></div>
+<div class="section--{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    {% for block in section.blocks %}
+      <div class="featured-block-content" {{ block.shopify_attributes }}style="gap: {{ block.settings.gap }}px;">
+        <div class="featured-block-content-info">
+          <div class="featured-block-content-info-heading">{{ block.settings.heading }}</div>
+          <div class="featured-block-content-info-text">{{ block.settings.text }}</div>
+          {% if block.settings.icon != blank %}
+            <div class="featured-block-content-info-icon">
+              {{ block.settings.icon | raw }}
+            </div>
+          {% endif %}
+          {%- if block.settings.button_link != blank -%}
+            <a class="button featured-block-content-info-link" href="{{ block.settings.button_link }}"
+              >shop bestsellers</a
+            >
+          {%- endif -%}
+        </div>
+        {%- if block.settings.image != blank -%}
+          <div class="featured-block-content-image">
+            <img
+              src="{{ block.settings.image | image_url: width: 590 }}"
+              alt="{{ block.settings.image.alt | escape }}"
+              style="border-radius: {{ block.settings.image_radius }}px;"
+            >
           </div>
-        {% endif %}
-        {%- if block.settings.button_link != blank -%}
-          <a class="button featured-block-content-info-link" href="{{ block.settings.button_link }}">shop bestsellers</a>
         {%- endif -%}
       </div>
-      {%- if block.settings.image != blank -%}
-        <div class="featured-block-content-image">
-          <img
-            src="{{ block.settings.image | image_url: width: 590 }}"
-            alt="{{ block.settings.image.alt | escape }}"
-            style="border-radius: {{ block.settings.image_radius }}px;"
-          >
-        </div>
-      {%- endif -%}
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </div>
 {% schema %}
 {
