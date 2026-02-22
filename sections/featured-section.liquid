@@ -39,6 +39,9 @@
       flex-direction: column;
     }
   }
+  .featured-block-content.reverse {
+    flex-direction: row-reverse;
+  }
   .featured-block-content-info-heading > * {
     margin-bottom: 32px;
 
@@ -103,7 +106,7 @@
   <div class="page-width">
     {% for block in section.blocks %}
       <div
-        class="featured-block-content featured-block-{{ block.id }}"
+        class="featured-block-content featured-block-{{ block.id }} {% if block.settings.reverse %}reverse {% endif %}"
         style="gap: {{ block.settings.gap }}px;"
       >
         <div class="featured-block-content-info">
@@ -263,6 +266,12 @@
         {
           "type": "header",
           "content": "Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "reverse",
+          "label": "Reverse block",
+          "default": false
         },
         {
           "type": "range",
