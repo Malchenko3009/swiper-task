@@ -27,7 +27,7 @@
             "padding_bottom": 0,
             "padding_top_mobile": 0,
             "padding_bottom_mobile": 0,
-            "custom_css": "x@media(min-width:750px) {\n  .featured-block-content-info {\n      max-width: 47.5%;\n  }\n}"
+            "custom_css": "@media(min-width:750px) {\n  .featured-block-content-info {\n      max-width: 47.5%;\n  }\n}"
           }
         },
         "featured_icizWr": {
