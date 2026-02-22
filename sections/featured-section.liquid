@@ -7,10 +7,16 @@
     display: flex;
     justify-content: space-between;
   }
-  .featured-block-content-info-heading {
+  .featured-block-content-info-heading > * {
     margin-bottom: 32px;
+
+    font-weight: 600;
+    font-size: 62px;
+    line-height: 100%;
+    letter-spacing: -0.03em;
+    color: #43384f;
   }
-  .featured-block-content-info-text {
+  .featured-block-content-info-text > * {
     line-height: 120%;
     letter-spacing: -0.01em;
     font-weight: 500;
@@ -22,12 +28,13 @@
   .featured-block-content-info-link {
     width: 353px;
     height: 66px;
-    border-radius: 10px;
 
+    border-radius: 10px !important;
     font-weight: 600 !important;
     font-size: 26px !important;
     line-height: 100% !important;
     letter-spacing: -0.03em !important;
+    overflow: hidden;
   }
 {%- endstylesheet -%}
 <div class="gradient"></div>
