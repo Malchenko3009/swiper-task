@@ -27,8 +27,8 @@
         "featured_icizWr": {
           "type": "featured",
           "settings": {
-            "heading": "<h2>Quality guarantee</h2>",
-            "text": "<h2>Two of our core brand values are quality & trust, which is why everything we do is built on a foundation of excellence & transparency. Our products are -</h2>",
+            "heading": "<p><strong>Why thousands elevate their evenings with Zooz?</strong></p>",
+            "text": "",
             "icon": "",
             "image": "shopify://shop_images/image_2.png",
             "button_link": "",
