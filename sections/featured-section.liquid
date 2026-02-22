@@ -39,6 +39,14 @@
       flex-direction: column;
     }
   }
+  @media screen and (min-width: 750px) {
+    .featured-block-content-info,
+    .featured-block-content-image {
+      flex: 1 1 0;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+  }
   .featured-block-content.reverse {
     flex-direction: row-reverse;
   }
@@ -70,9 +78,7 @@
     }
   }
   .featured-block-content-info-icon svg {
-    @media (max-width: 750px) {
-      max-width: 100%;
-    }
+    max-width: 100%;
   }
   .featured-block-content-image {
     @media (max-width: 750px) {
