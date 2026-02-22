@@ -23,10 +23,23 @@
             "gap": 41,
             "image_radius": 20
           }
+        },
+        "featured_icizWr": {
+          "type": "featured",
+          "settings": {
+            "heading": "<h2>Quality guarantee</h2>",
+            "text": "<h2>Two of our core brand values are quality & trust, which is why everything we do is built on a foundation of excellence & transparency. Our products are -</h2>",
+            "icon": "",
+            "image": "shopify://shop_images/image_2.png",
+            "button_link": "",
+            "gap": 41,
+            "image_radius": 20
+          }
         }
       },
       "block_order": [
-        "featured_cDteF7"
+        "featured_cDteF7",
+        "featured_icizWr"
       ],
       "name": "Featured section",
       "settings": {
