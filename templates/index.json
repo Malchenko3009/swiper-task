@@ -52,7 +52,7 @@
       "type": "featured-section",
       "name": "Featured section",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "image": "shopify://shop_images/image_1.png"
       }
     },
