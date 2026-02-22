@@ -20,5 +20,9 @@
   "homepage": "https://github.com/Malchenko3009/swiper-task#readme",
   "dependencies": {
     "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^1.10.0",
+    "prettier": "^3.6.2"
   }
 }
