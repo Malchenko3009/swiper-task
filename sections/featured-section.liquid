@@ -20,11 +20,15 @@
           <a class="featured-block-content-info-link" href="{{ block.settings.button_link }}">shop bestsellers</a>
         {%- endif -%}
       </div>
-      <div class="featured-block-content-image">
-        {%- if block.settings.image != blank -%}
-          <img src="{{ block.settings.image | image_url: width: 590 }}" alt="{{ block.settings.image.alt | escape }}">
-        {%- endif -%}
-      </div>
+      {%- if block.settings.image != blank -%}
+        <div class="featured-block-content-image">
+          <img
+            src="{{ block.settings.image | image_url: width: 590 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            style="border-radius: {{ block.settings.image_radius }}px;"
+          >
+        </div>
+      {%- endif -%}
     </div>
   {% endfor %}
 </div>
@@ -91,11 +95,11 @@
           "type": "range",
           "id": "image_radius",
           "label": "Image border radius",
-          "min": 0,
+          "min": 20,
           "max": 50,
-          "step": 2,
+          "step": 1,
           "unit": "px",
-          "default": 0
+          "default": 20
         }
       ]
     }
