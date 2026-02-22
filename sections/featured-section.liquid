@@ -4,10 +4,12 @@
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
   }
   {% for block in section.blocks %}
+    {% if block.type == 'featured' %}
   .featured-block-{{ block.id }} {
     padding-top: {{ block.settings.padding_top_mobile }}px;
     padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
   }
+    {% endif %}
   {% endfor %}
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -15,10 +17,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
     {% for block in section.blocks %}
+      {% if block.type == 'featured' %}
     .featured-block-{{ block.id }} {
       padding-top: {{ block.settings.padding_top }}px;
       padding-bottom: {{ block.settings.padding_bottom }}px;
     }
+      {% endif %}
     {% endfor %}
   }
 {%- endstyle -%}
@@ -90,6 +94,34 @@
       /* max-height: 360px; */
     }
   }
+  .featured-block-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .featured-block-benefit-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .featured-block-benefit-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+  .featured-block-benefit-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .featured-block-benefit-text {
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+  .featured-block-benefit-text p {
+    margin: 0;
+  }
   .featured-block-content-info-link {
     max-width: 100%;
     width: 353px;
@@ -110,36 +142,65 @@
 <div class="gradient"></div>
 <div class="section--{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
+    {% assign last_featured = null %}
     {% for block in section.blocks %}
-      <div
-        class="featured-block-content featured-block-{{ block.id }} {% if block.settings.reverse %}reverse {% endif %}"
-        style="gap: {{ block.settings.gap }}px;"
-      >
-        <div class="featured-block-content-info">
-          <div class="featured-block-content-info-heading">{{ block.settings.heading }}</div>
-          <div class="featured-block-content-info-text">{{ block.settings.text }}</div>
-          {% if block.settings.icon != blank %}
-            <div class="featured-block-content-info-icon">
-              {{ block.settings.icon | raw }}
-            </div>
-          {% endif %}
-          {%- if block.settings.button_link != blank -%}
-            <a class=" button featured-block-content-info-link" href="{{ block.settings.button_link }}"
-              >shop bestsellers</a
-            >
+      {% if block.type == 'featured' %}
+        {% if last_featured != null %}
+          {%- if last_featured.settings.button_link != blank -%}
+            <a class="button featured-block-content-info-link" href="{{ last_featured.settings.button_link }}">shop bestsellers</a>
           {%- endif -%}
-        </div>
-        {%- if block.settings.image != blank -%}
-          <div class="featured-block-content-image">
-            <img
-              src="{{ block.settings.image | image_url: width: 590 }}"
-              alt="{{ block.settings.image.alt | escape }}"
-              style="border-radius: {{ block.settings.image_radius }}px;"
-            >
+          </div></div>
+          {%- if last_featured.settings.image != blank -%}
+            <div class="featured-block-content-image">
+              <img
+                src="{{ last_featured.settings.image | image_url: width: 590 }}"
+                alt="{{ last_featured.settings.image.alt | escape }}"
+                style="border-radius: {{ last_featured.settings.image_radius }}px;"
+              >
+            </div>
+          {%- endif -%}
           </div>
-        {%- endif -%}
-      </div>
+        {% endif %}
+        {% assign last_featured = block %}
+        <div
+          class="featured-block-content featured-block-{{ block.id }} {% if block.settings.reverse %}reverse {% endif %}"
+          style="gap: {{ block.settings.gap }}px;"
+          {{ block.shopify_attributes }}
+        >
+          <div class="featured-block-content-info">
+            <div class="featured-block-content-info-heading">{{ block.settings.heading }}</div>
+            <div class="featured-block-content-info-text">{{ block.settings.text }}</div>
+            {% if block.settings.icon != blank %}
+              <div class="featured-block-content-info-icon">
+                {{ block.settings.icon | raw }}
+              </div>
+            {% endif %}
+            <div class="featured-block-benefits">
+      {% elsif block.type == 'benefit' %}
+              <div class="featured-block-benefit-item" {{ block.shopify_attributes }}>
+                {% if block.settings.icon != blank %}
+                  <span class="featured-block-benefit-icon">{{ block.settings.icon | raw }}</span>
+                {% endif %}
+                <span class="featured-block-benefit-text rte">{{ block.settings.text }}</span>
+              </div>
+      {% endif %}
     {% endfor %}
+    {% if last_featured != null %}
+      {%- if last_featured.settings.button_link != blank -%}
+        <a class="button featured-block-content-info-link" href="{{ last_featured.settings.button_link }}">shop bestsellers</a>
+      {%- endif -%}
+      </div></div>
+      {%- if last_featured.settings.image != blank -%}
+        <div class="featured-block-content-image">
+          <img
+            src="{{ last_featured.settings.image | image_url: width: 590 }}"
+            alt="{{ last_featured.settings.image.alt | escape }}"
+            style="border-radius: {{ last_featured.settings.image_radius }}px;"
+          >
+        </div>
+      {%- endif -%}
+      </div>
+    {% endif %}
   </div>
 </div>
 
@@ -179,7 +240,6 @@
 {% schema %}
 {
   "name": "Featured sectio",
-  "max_blocks": 2,
   "settings": [
     {
       "type": "color_scheme",
@@ -346,6 +406,23 @@
           "step": 1,
           "unit": "px",
           "default": 0
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit (icon + text)",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon",
+          "label": "Icon SVG"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
         }
       ]
     }
