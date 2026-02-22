@@ -1,7 +1,33 @@
 {%- stylesheet -%}
+  h2,
+  p {
+    margin: 0;
+  }
   .featured-block-content {
     display: flex;
     justify-content: space-between;
+  }
+  .featured-block-content-info-heading {
+    margin-bottom: 32px;
+  }
+  .featured-block-content-info-text {
+    line-height: 120%;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  .featured-block-content-info-icon {
+    margin-top: 30px;
+    margin-bottom: 35px;
+  }
+  .featured-block-content-info-link {
+    width: 353px;
+    height: 66px;
+    border-radius: 10px;
+
+    font-weight: 600 !important;
+    font-size: 26px !important;
+    line-height: 100% !important;
+    letter-spacing: -0.03em !important;
   }
 {%- endstylesheet -%}
 <div class="gradient"></div>
@@ -18,7 +44,7 @@
             </div>
           {% endif %}
           {%- if block.settings.button_link != blank -%}
-            <a class="button featured-block-content-info-link" href="{{ block.settings.button_link }}"
+            <a class=" button featured-block-content-info-link" href="{{ block.settings.button_link }}"
               >shop bestsellers</a
             >
           {%- endif -%}
