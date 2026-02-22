@@ -60,7 +60,7 @@
             "image": "shopify://shop_images/image_1.png",
             "button_link": "shopify://collections/all",
             "gap": 41,
-            "image_radius": 20
+            "image_radius": 0
           }
         }
       },
